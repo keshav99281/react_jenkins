@@ -16,17 +16,17 @@ pipeline {
         }
       stage('Terraform Init') {
            steps {
-                bat '"%TERRAFORM_PATH%" -chdir = terraform init '
+                bat '"%TERRAFORM_PATH%" -chdir=terraform init '
           }
     }
       stage('Terraform Plan') {
            steps {
-               bat '"%TERRAFORM_PATH%"  -chdir = terraform plan -out=tfplan'   
+               bat '"%TERRAFORM_PATH%"  -chdir=terraform plan -out=tfplan'   
            }
      }
         stage('Terraform Apply') {
             steps {
-                bat '"%TERRAFORM_PATH%"  -chdir = terraform apply -auto-approve'
+                bat '"%TERRAFORM_PATH%"  -chdir=terraform apply -auto-approve'
             }
         }
 
