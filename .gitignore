@@ -134,3 +134,14 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+# IDE settings
+.idea/
+.vscode/
+
+# Dependency directories
+.DS_Store
+
+# Temporary files
+*.swp
