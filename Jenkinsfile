@@ -3,14 +3,14 @@ pipeline {
     environment {
         AZURE_CREDENTIALS_ID = 'azure-service-principal'
         RESOURCE_GROUP = 'rg-jenkins'
-        APP_SERVICE_NAME = 'webapijenkins1010101'
+        APP_SERVICE_NAME = 'reactjenkinskeshav'
         TERRAFORM_PATH = '"C:\\Program Files\\nodejs\\node.exe"'
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'master', url: 'https://github.com/somay007/newapiforazure.git'
+                git branch: 'main', url: 'https://github.com/keshav99281/react_jenkins.git'
             }
         }
       stage('Terraform Init') {
@@ -18,21 +18,23 @@ pipeline {
                 bat '"%TERRAFORM_PATH%" -chdir=terraform init '
           }
     }
-      stage('Terraform Plan & Apply') {
+      stage('Terraform Plan') {
            steps {
-               
-               bat '"%TERRAFORM_PATH%" -chdir=terraform plan -out=tfplan'
-               bat '"%TERRAFORM_PATH%" -chdir=terraform apply -auto-approve tfplan'
+               bat '"%TERRAFORM_PATH%" -chdir=terraform plan -out=tfplan'   
            }
      }
-
-        stage('Build') {
+        stage('Terraform Apply') {
             steps {
-                bat 'dotnet restore'
-                bat 'dotnet build --configuration Release'
-                bat 'dotnet publish -c Release -o ./publish'
+                bat '"%TERRAFORM_PATH%" -chdir=terraform apply -auto-approve'
             }
         }
+
+        stage('Build') {
+    steps {
+        bat 'npm install'      
+        bat 'npm run build'    
+    }
+}
 
         stage('Deploy') {
             steps {
