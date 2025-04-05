@@ -47,5 +47,5 @@ variable "pricing_plan" {
 }
 
 variable "version" {
-  default = "22-lts"
+  default = "~22"
 }
