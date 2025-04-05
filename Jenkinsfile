@@ -4,7 +4,8 @@ pipeline {
         AZURE_CREDENTIALS_ID = 'azure-service-principal'
         RESOURCE_GROUP = 'rg-jenkins'
         APP_SERVICE_NAME = 'reactjenkinskeshav'
-        TERRAFORM_PATH = '"C:\\Program Files\\nodejs\\node.exe"'
+        NODE_PATH = '"C:\\Program Files\\nodejs\\node.exe"'
+        TERRAFORM_PATH = '"C:\\Users\\user\\Downloads\\terraform_1.11.3_windows_386\\terraform.exe"'
     }
 
     stages {
