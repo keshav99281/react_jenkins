@@ -16,7 +16,7 @@ pipeline {
         }
       stage('Terraform Init') {
            steps {
-                bat '"%TERRAFORM_PATH%" -chdir=terraform init '
+                bat '"%TERRAFORM_PATH%" init '
           }
     }
       stage('Terraform Plan') {
