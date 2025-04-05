@@ -21,12 +21,12 @@ pipeline {
     }
       stage('Terraform Plan') {
            steps {
-               bat '"%TERRAFORM_PATH%" -chdir=terraform plan -out=tfplan'   
+               bat '"%TERRAFORM_PATH%"  plan -out=tfplan'   
            }
      }
         stage('Terraform Apply') {
             steps {
-                bat '"%TERRAFORM_PATH%" -chdir=terraform apply -auto-approve'
+                bat '"%TERRAFORM_PATH%"  apply -auto-approve'
             }
         }
 
