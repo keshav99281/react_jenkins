@@ -18,11 +18,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Debug Workspace') {
-            steps {
-                bat 'dir'
-            }
-      }
+        
       stage('Terraform Init') {
            steps {
                 bat '"%TERRAFORM_PATH%" -chdir=terraform init '
@@ -44,18 +40,19 @@ pipeline {
          }
        }
 
-        stage('Install Dependencies') {
+        stage('Install Dependencies and build react app') {
             steps {
                 dir('my-app') {
                    bat 'npm install'
+                   bat 'npm run build' 
                 }
             }
         }
-        stage('Build') {
-            steps {
-                bat 'npm run build'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         bat 'npm run build'
+        //     }
+        // }
 
         stage('Deploy') {
             steps {
