@@ -3,14 +3,14 @@ pipeline {
     environment {
         AZURE_CREDENTIALS_ID = 'azure-service-principal'
         RESOURCE_GROUP = 'rg-jenkins'
-        APP_SERVICE_NAME = 'webapijenkins1010101'
-        TERRAFORM_PATH = '"C:\\Program Files\\nodejs\\node.exe"'
+        APP_SERVICE_NAME = 'reacttjenkinskeshav'
+        TERRAFORM_PATH = '"C:\\Users\\user\\Downloads\\terraform_1.11.3_windows_386\\terraform.exe"'
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'master', url: 'https://github.com/somay007/newapiforazure.git'
+                git branch: 'main', url: 'https://github.com/keshav99281/react_jenkins.git'
             }
         }
       stage('Terraform Init') {
@@ -28,9 +28,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'dotnet restore'
-                bat 'dotnet build --configuration Release'
-                bat 'dotnet publish -c Release -o ./publish'
+                bat 'npm install'
+                bat 'npm run build'
             }
         }
 

@@ -46,6 +46,6 @@ variable "pricing_plan" {
   default = "F1"
 }
 
-variable "version" {
+variable "react_version" {
   default = "22-lts"
 }
