@@ -36,6 +36,15 @@ pipeline {
            }
      }
 
+        stage('Debug my-app Directory') {
+          steps {
+            dir('my-app') {
+               bat 'dir'
+           }
+         }
+       }
+
+        
         stage('Build') {
             steps {
                 bat 'npm install'
