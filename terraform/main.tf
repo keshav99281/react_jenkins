@@ -23,7 +23,7 @@ resource "azurerm_linux_web_app" "serviceApp" {
   resource_group_name = azurerm_resource_group.rgasp.name
   site_config {
     application_stack {
-      node_version = var.version
+      node_version = var.react_version
     }
   }
 }
