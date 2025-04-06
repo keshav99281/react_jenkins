@@ -44,10 +44,15 @@ pipeline {
          }
        }
 
-        
+        stage('Install Dependencies') {
+            steps {
+                dir('my-app') {
+                   bat 'npm install'
+                }
+            }
+        }
         stage('Build') {
             steps {
-                bat 'npm install'
                 bat 'npm run build'
             }
         }
