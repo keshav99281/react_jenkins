@@ -19,7 +19,7 @@ variable "resource_group_name" {
 variable "linux_web_app_name" {
   description = "name of the app service"
   type = string
-  default = "reacttjenkinskeshav"
+  default = "reactjenkinskeshav"
 }
 
 # variable "linux_web_app_slot_name" {
@@ -47,5 +47,5 @@ variable "pricing_plan" {
 }
 
 variable "version" {
-  default = "22"
+  default = "22-lts"
 }
