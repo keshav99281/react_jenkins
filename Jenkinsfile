@@ -13,6 +13,16 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/keshav99281/react_jenkins.git'
             }
         }
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Debug Workspace') {
+            steps {
+                sh 'ls -la'
+            }
+      }
       stage('Terraform Init') {
            steps {
                 bat '"%TERRAFORM_PATH%" -chdir=terraform init '
