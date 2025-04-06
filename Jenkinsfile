@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Debug Workspace') {
             steps {
-                sh 'ls -la'
+                bat 'dir'
             }
       }
       stage('Terraform Init') {
