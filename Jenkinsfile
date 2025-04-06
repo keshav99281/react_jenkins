@@ -3,8 +3,7 @@ pipeline {
     environment {
         AZURE_CREDENTIALS_ID = 'azure-service-principal'
         RESOURCE_GROUP = 'rg-jenkins'
-        APP_SERVICE_NAME = 'reactjenkinskeshav'
-        NODE_PATH = '"C:\\Program Files\\nodejs\\node.exe"'
+        APP_SERVICE_NAME = 'reacttjenkinskeshav'
         TERRAFORM_PATH = '"C:\\Users\\user\\Downloads\\terraform_1.11.3_windows_386\\terraform.exe"'
     }
 
@@ -19,23 +18,20 @@ pipeline {
                 bat '"%TERRAFORM_PATH%" -chdir=terraform init '
           }
     }
-      stage('Terraform Plan') {
+      stage('Terraform Plan & Apply') {
            steps {
-               bat '"%TERRAFORM_PATH%"  -chdir=terraform plan -out=tfplan'   
+               
+               bat '"%TERRAFORM_PATH%" -chdir=terraform plan -out=tfplan'
+               bat '"%TERRAFORM_PATH%" -chdir=terraform apply -auto-approve tfplan'
            }
      }
-        stage('Terraform Apply') {
-            steps {
-                bat '"%TERRAFORM_PATH%"  -chdir=terraform apply -auto-approve'
-            }
-        }
 
         stage('Build') {
-    steps {
-        bat 'npm install'      
-        bat 'npm run build'    
-    }
-}
+            steps {
+                bat 'npm install'
+                bat 'npm run build'
+            }
+        }
 
         stage('Deploy') {
             steps {
