@@ -19,18 +19,18 @@ pipeline {
             }
         }
         
-      stage('Terraform Init') {
-           steps {
-                bat '"%TERRAFORM_PATH%" -chdir=terraform init '
-          }
-    }
-      stage('Terraform Plan & Apply') {
-           steps {
+    //   stage('Terraform Init') {
+    //        steps {
+    //             bat '"%TERRAFORM_PATH%" -chdir=terraform init '
+    //       }
+    // }
+    //   stage('Terraform Plan & Apply') {
+    //        steps {
                
-               bat '"%TERRAFORM_PATH%" -chdir=terraform plan -out=tfplan'
-               bat '"%TERRAFORM_PATH%" -chdir=terraform apply -auto-approve tfplan'
-           }
-     }
+    //            bat '"%TERRAFORM_PATH%" -chdir=terraform plan -out=tfplan'
+    //            bat '"%TERRAFORM_PATH%" -chdir=terraform apply -auto-approve tfplan'
+    //        }
+    //  }
 
         stage('Debug my-app Directory') {
           steps {
@@ -80,7 +80,7 @@ pipeline {
             steps{
                 dir('my-app'){
                     //bat "az webapp deploy source config-zip --resource-group $RESOURCE_GROUP --name $APP_SERVICE_NAME --src-path ./publish.zip --type zip"
-                    bat "az webapp deploy -g $RESOURCE_GROUP -n $APP_SERVICE_NAME --src ./publish.zip"
+                    bat "az webapp deploy -g $RESOURCE_GROUP -n $APP_SERVICE_NAME --src-path ./publish.zip"
                 }
             }
         }
