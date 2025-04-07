@@ -80,7 +80,7 @@ pipeline {
             steps{
                 dir('my-app'){
                     //bat "az webapp deploy source config-zip --resource-group $RESOURCE_GROUP --name $APP_SERVICE_NAME --src-path ./publish.zip --type zip"
-                    bat "az webapp deployment source config-zip -g $RESOURCE_GROUP -n $APP_SERVICE_NAME --src ./publish.zip"
+                    bat "az webapp deploy -g $RESOURCE_GROUP -n $APP_SERVICE_NAME --src ./publish.zip"
                 }
             }
         }
