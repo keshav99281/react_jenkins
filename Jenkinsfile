@@ -7,12 +7,12 @@ pipeline {
         TERRAFORM_PATH = '"C:\\Users\\user\\Downloads\\terraform_1.11.3_windows_386\\terraform.exe"'
     }
 
-    stages {
-        stage('Clean Workspace') {
-    steps {
-        cleanWs()
-    }
-}
+//     stages {
+//         stage('Clean Workspace') {
+//     steps {
+//         cleanWs()
+//     }
+// }
         stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/keshav99281/react_jenkins.git'
