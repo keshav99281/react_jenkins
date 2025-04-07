@@ -3,7 +3,7 @@ pipeline {
     environment {
         AZURE_CREDENTIALS_ID = 'azure-service-principal'
         RESOURCE_GROUP = 'rg-jenkins-react'
-        APP_SERVICE_NAME = 'reactjenkinskeshav0'
+        APP_SERVICE_NAME = 'reactjenkinskeshav'
         TERRAFORM_PATH = '"C:\\Users\\user\\Downloads\\terraform_1.11.3_windows_386\\terraform.exe"'
     }
 
@@ -16,11 +16,6 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/keshav99281/react_jenkins.git'
-            }
-        }
-        stage('Checkout') {
-            steps {
-                checkout scm
             }
         }
         
