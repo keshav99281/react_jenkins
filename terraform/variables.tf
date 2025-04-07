@@ -7,7 +7,7 @@ variable "subscription_id" {
 variable "location" {
     description = "location of service"
     type = string
-    default = "eastus"
+    default = "centralindia"
 }
 
 variable "resource_group_name" {
