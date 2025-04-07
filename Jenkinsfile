@@ -82,7 +82,7 @@ pipeline {
                 dir('my-app'){
                     //bat "az webapp deploy source config-zip --resource-group $RESOURCE_GROUP --name $APP_SERVICE_NAME --src-path ./publish.zip --type zip"
                      bat "if exist ./publish.zip echo 'File exists'"
-                    bat "az webapp deploy -g $RESOURCE_GROUP -n $APP_SERVICE_NAME --src-path ./publish.zip"
+                    bat "az webapp deploy -g $RESOURCE_GROUP -n $APP_SERVICE_NAME --src-path ./publish.zip --type zip"
                 }
             }
         }
