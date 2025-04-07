@@ -7,7 +7,7 @@ pipeline {
         TERRAFORM_PATH = '"C:\\Users\\user\\Downloads\\terraform_1.11.3_windows_386\\terraform.exe"'
     }
 
-//     stages {
+     stages {
 //         stage('Clean Workspace') {
 //     steps {
 //         cleanWs()
