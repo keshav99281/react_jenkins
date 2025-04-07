@@ -31,7 +31,7 @@ variable "linux_web_app_name" {
 variable "service_plan_name" {
   description = "Name of the service plan"
   type = string
-  default = "app_serviceplankeshav"
+  default = "appserviceplankeshav"
 }
 
 variable "os" {
