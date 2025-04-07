@@ -8,11 +8,11 @@ pipeline {
     }
 
      stages {
-//         stage('Clean Workspace') {
-//     steps {
-//         cleanWs()
-//     }
-// }
+        stage('Clean Workspace') {
+    steps {
+        cleanWs()
+    }
+}
         stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/keshav99281/react_jenkins.git'
