@@ -19,7 +19,7 @@ variable "resource_group_name" {
 variable "linux_web_app_name" {
   description = "name of the app service"
   type = string
-  default = "reactjenkinskeshav"
+  default = "react_jenkinskeshav"
 }
 
 # variable "linux_web_app_slot_name" {
@@ -31,7 +31,7 @@ variable "linux_web_app_name" {
 variable "service_plan_name" {
   description = "Name of the service plan"
   type = string
-  default = "appserviceplankeshav"
+  default = "app_serviceplankeshav"
 }
 
 variable "os" {
