@@ -76,6 +76,14 @@ pipeline {
             }
         }
 
+         stage('Debug my-app Directory for publish file') {
+          steps {
+            dir('my-app') {
+               bat 'dir'
+           }
+         }
+       }
+
         stage('Deploy'){
             
             steps{
