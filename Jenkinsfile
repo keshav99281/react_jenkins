@@ -107,8 +107,8 @@ pipeline {
     // }
         stage('Zip Build Folder') {
       steps {
-        dir("${REACT_APP_DIR}\\build") {
-          bat 'powershell Compress-Archive -Path * -DestinationPath ..\\build.zip -Force'
+        dir("${REACT_APP_DIR}") {
+          bat 'powershell Compress-Archive -Path ./publish/* -DestinationPath ./publish.zip -Force'
         }
       }
     }
@@ -119,7 +119,7 @@ pipeline {
       //       bat "az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID"
 
         dir("${REACT_APP_DIR}") {
-          bat " az webapp deployment source config-zip --resource-group %AZURE_RG%  --name %AZURE_WEBAPP_NAME%  --src build.zip"
+          bat " az webapp deployment source config-zip --resource-group %AZURE_RG%  --name %AZURE_WEBAPP_NAME%  --src publish.zip"
         }
       }
     }
