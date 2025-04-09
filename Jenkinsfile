@@ -54,47 +54,68 @@ pipeline {
         //     }
         // }
 
-        stage('File zipping') {
-    steps {
-        dir('my-app') {
+//         stage('File zipping') {
+//     steps {
+//         dir('my-app') {
             
-            bat 'mkdir ..\\publish'
+//             bat 'mkdir ..\\publish'
             
-            bat 'xcopy build ..\\publish /E /I'
-        }
-        bat 'powershell Compress-Archive -Path ./publish/* -DestinationPath ./publish.zip -Force'
-    }
-}
-        stage('Login') {
-            steps {
+//             bat 'xcopy build ..\\publish /E /I'
+//         }
+//         bat 'powershell Compress-Archive -Path ./publish/* -DestinationPath ./publish.zip -Force'
+//     }
+// }
+//         // stage('Login') {
+        //     steps {
                 
-                   withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
-                       bat "az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID"
-                       //bat "powershell Compress-Archive -Path ./publish/* -DestinationPath ./publish.zip -Force"
-                       //bat "az webapp deployment source config-zip --resource-group $RESOURCE_GROUP --name $APP_SERVICE_NAME --src-path ./publish.zip --type zip"
-                   }
-            }
-        }
+        //            withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
+        //                bat "az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID"
+        //                //bat "powershell Compress-Archive -Path ./publish/* -DestinationPath ./publish.zip -Force"
+        //                //bat "az webapp deployment source config-zip --resource-group $RESOURCE_GROUP --name $APP_SERVICE_NAME --src-path ./publish.zip --type zip"
+        //            }
+        //     }
+        // }
 
-         stage('Debug my-app Directory for publish file') {
-          steps {
-            dir('my-app') {
-               bat 'dir'
-           }
-         }
-       }
+    //      stage('Debug my-app Directory for publish file') {
+    //       steps {
+    //         dir('my-app') {
+    //            bat 'dir'
+    //        }
+    //      }
+    //    }
 
-        stage('Deploy'){
+    //     stage('Deploy'){
             
-            steps{
-                dir('my-app'){
-                    //bat "az webapp deploy source config-zip --resource-group $RESOURCE_GROUP --name $APP_SERVICE_NAME --src-path ./publish.zip --type zip"
-                     bat "if exist ./publish.zip echo 'File exists'"
-                    bat "az webapp deploy -g $RESOURCE_GROUP -n $APP_SERVICE_NAME --src-path C:/ProgramData/Jenkins/.jenkins/workspace/reactPipeline/my-app/publish.zip --type zip"
-                }
-            }
+    //         steps{
+    //             dir('my-app'){
+    //                 //bat "az webapp deploy source config-zip --resource-group $RESOURCE_GROUP --name $APP_SERVICE_NAME --src-path ./publish.zip --type zip"
+    //                  bat "if exist ./publish.zip echo 'File exists'"
+    //                 bat "az webapp deploy -g $RESOURCE_GROUP -n $APP_SERVICE_NAME --src-path C:/ProgramData/Jenkins/.jenkins/workspace/reactPipeline/my-app/publish.zip --type zip"
+    //             }
+    //         }
+    //     }
+    // }
+        stage('Zip Build Folder') {
+      steps {
+        dir("my-app\\build") {
+          bat 'powershell Compress-Archive -Path * -DestinationPath ..\\build.zip -Force'
         }
+      }
     }
+
+    stage('Deploy to Azure App Service') {
+      steps {
+            withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
+            bat "az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID"
+
+        dir("${REACT_APP_DIR}") {
+          bat " az webapp deploy -g $RESOURCE_GROUP -n $APP_SERVICE_NAME  --src-path ./build.zip"
+        }
+      }
+    }
+  }
+}
+
     
 
     post {
