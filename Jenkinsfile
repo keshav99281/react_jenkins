@@ -8,7 +8,7 @@ pipeline {
         REACT_APP_DIR = 'my-app'
     }
 
-//      stages {
+      stages {
 //         stage('Clean Workspace') {
 //     steps {
 //         cleanWs()
@@ -121,9 +121,7 @@ pipeline {
         dir("${REACT_APP_DIR}") {
           bat " az webapp deploy --resource-group %AZURE_RG%  --name %AZURE_WEBAPP_NAME%  --src-path ./build.zip"
         }
-      }
     }
-  }
 }
 
 
