@@ -114,13 +114,14 @@ pipeline {
     }
 
     stage('Deploy to Azure App Service') {
-      // steps {
+       steps {
       //       withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
       //       bat "az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID"
 
         dir("${REACT_APP_DIR}") {
           bat " az webapp deploy --resource-group %AZURE_RG%  --name %AZURE_WEBAPP_NAME%  --src-path ./build.zip"
         }
+      }
     }
 }
 
